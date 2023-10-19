@@ -1,38 +1,26 @@
 import { View, StyleSheet, Pressable } from 'react-native';
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { useNavigate } from '@/hooks';
-
+import IconBottomNavbar from './IconBottomNavbar';
 const BottomNavbar = () => {
     const { toHome, toBudget, toCategories, toInformation, toSettings, toTipsCalculator } = useNavigate();
 
     return (
         <View style={styles.container}>
-            <Pressable onPress={toInformation}>
-                <Icon name="information-outline" size={50} />
-            </Pressable>
 
-            <Pressable onPress={toBudget}>
-                <Icon name="text-box-multiple-outline" size={50} />
-            </Pressable>
-
-            <Pressable onPress={toHome}>
-                <Icon name="home-circle-outline" size={50} />
-            </Pressable>
-
-            <Pressable onPress={toCategories}>
-                <Icon name="view-grid-outline" size={50} />
-            </Pressable>
-
-            <Pressable onPress={toSettings}>
-                <Icon name="cog-outline" size={50} />
-            </Pressable>
+            <IconBottomNavbar route={toInformation} iconName="md-information-circle-outline" />
+            <IconBottomNavbar route={toBudget} iconName="md-cash-outline" />
+            <IconBottomNavbar route={toHome} iconName="md-home-outline" />
+            <IconBottomNavbar route={toCategories} iconName="md-grid-outline" />
+            <IconBottomNavbar route={toSettings} iconName="md-settings-outline" />
+            
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#FF00E0',
+        backgroundColor: '#FFFFFF',
         display: 'flex',
         flexDirection: 'row',
         marginTop: 'auto',
@@ -40,6 +28,9 @@ const styles = StyleSheet.create({
         gap: 20,
         paddingVertical: 10,
     },
+    home:{
+        elevation: 8,
+    }
 });
 
 export default BottomNavbar;
