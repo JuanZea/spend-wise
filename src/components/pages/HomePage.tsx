@@ -1,28 +1,22 @@
 import { View, Text, Button} from 'react-native';
 import { StyleSheet } from 'react-native';
 import { ExchangeView} from '../elements/homeElements'
+import { Theme } from '@/styles'
+import { BalancePanel } from '../elements';
 
 
 export default function HomePage() {
     return (
         <View style={styles.container}>
-            
-            <View style={styles.balance}>
-                <Text style={styles.nameBalance}>Total Balance</Text>
-                <Text style={styles.valueBalance}>7,736.000 COP</Text>
 
-                <View style={styles.exchangeContainer}>
-                <ExchangeView nameAprox="USD" value="2.0000 COP"/>
-                <ExchangeView nameAprox="EUR" value="2.0000 COP"/>
-                
-                </View>
-            </View>
+            <BalancePanel />
+            
         </View>
     );
 }
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#ddd6fe',
+        backgroundColor: Theme.colors.primary[50],
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
