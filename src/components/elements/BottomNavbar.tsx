@@ -1,18 +1,17 @@
 import { View, StyleSheet, Pressable } from 'react-native';
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { useNavigate } from '@/hooks';
 import IconBottomNavbar from './IconBottomNavbar';
 const BottomNavbar = () => {
-    const { toHome, toBudget, toCategories, toInformation, toSettings, toTipsCalculator } = useNavigate();
+    const { toHome, toBudget, toCategories, toInformation, toMore } = useNavigate();
 
     return (
         <View style={styles.container}>
 
-            <IconBottomNavbar route={toInformation} iconName="md-information-circle-outline" />
             <IconBottomNavbar route={toBudget} iconName="md-cash-outline" />
-            <IconBottomNavbar route={toHome} iconName="md-home-outline" />
             <IconBottomNavbar route={toCategories} iconName="md-grid-outline" />
-            <IconBottomNavbar route={toSettings} iconName="md-settings-outline" />
+            <IconBottomNavbar route={toHome} iconName="md-home-outline" />
+            <IconBottomNavbar route={toInformation} iconName="md-information-circle-outline" />
+            <IconBottomNavbar route={toMore} iconName="ellipsis-horizontal-outline" />
             
         </View>
     );

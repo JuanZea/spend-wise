@@ -1,5 +1,5 @@
 import { createMemoryRouter } from 'react-router-native';
-import { BudgetsPage, CategoriesPage, HomePage, InformationPage, TipsPage, SettingsPage } from '@/components/pages';
+import { BudgetsPage, CategoriesPage, HomePage, InformationPage, TipsPage, SettingsPage, MorePage } from '@/components/pages';
 import { MainTemplate } from '@/components/templates';
 import { ROUTE_NAMES } from '@/constants';
 
@@ -27,6 +27,10 @@ export const ROUTES = {
     [ROUTE_NAMES.settings]: {
         path: `/${ROUTE_NAMES.settings}`,
         element: <SettingsPage />,
+    },
+    [ROUTE_NAMES.more]: {
+        path: `/${ROUTE_NAMES.more}`,
+        element: <MorePage />,
     },
 };
 

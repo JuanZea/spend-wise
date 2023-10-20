@@ -1,6 +1,7 @@
 import { StyleSheet, Pressable } from 'react-native';
-import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import { Ionicons } from '@expo/vector-icons';
+import { Theme } from '@/styles'
+import CText from './CText';
 
 const IconBottomNavbar = ({ route, iconName}) => {
     return (
@@ -13,7 +14,7 @@ const IconBottomNavbar = ({ route, iconName}) => {
 const buttonStyles = StyleSheet.create({
     container: {
         fontSize: 45,
-        color: '#4c1d95',
+        color: Theme.colors.primary[500],
     
     },
     active: {

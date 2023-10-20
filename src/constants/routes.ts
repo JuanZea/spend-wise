@@ -5,4 +5,5 @@ export enum ROUTE_NAMES {
     categories,
     information,
     tipsCalculator,
+    more,
 }
