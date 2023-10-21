@@ -1,21 +1,23 @@
 import { TextInput } from '@react-native-material/core';
 import { View, Text, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-
-
+import { CText, CButton } from '../elements';
+import { Theme } from '@/styles';
 
 export default function TipsPage() {
-    
+
     return (
-        <View>
-            <Text style={{ fontSize: 36 }}>Tips</Text>
-            <TextInput label="% de propina" />
+        <View style={styles.container}>
+            <View style={styles.tips}>
+            <CText children={'Tips'} fontWeight='bold' textSize='lg' textColor='light'/>
+            <TextInput style={styles.input} label="% de propina" />
             <TextInput
                 style={styles.input}
                 label="Valor"
                 keyboardType="numeric"
             />
-
+            <CButton label="Calcular" />
+            </View>
         </View>
     );
 }
@@ -25,12 +27,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    input: {
-        borderWidth: 1,
-        borderColor: 'gray',
-        borderRadius: 5,
-        paddingHorizontal: 10,
-        width: 200,
-        marginBottom: 10,
+    tips: {
+        backgroundColor: Theme.colors.primary[500],
+        borderRadius: 16,
+        width: '90%',
+        padding: 10,
+        alignItems: 'center',
+        gap: 10,
     },
+
+    input:{
+        width: '90%',
+    }
 });

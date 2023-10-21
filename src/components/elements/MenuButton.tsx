@@ -3,11 +3,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { Theme } from '@/styles'
 import { CText } from '../elements'
 
-const MenuButton = ({ route, iconName, routeDescription}) => {
+const MenuButton = ({ route, iconName, routeDescription }) => {
     return (
-        <Pressable onPress={() => route({replace: true})}>
+        <Pressable onPress={() => route({ replace: true })}>
             <View style={buttonStyles.container}>
-                <Ionicons name={iconName}  style={buttonStyles.icon}/>
+                <Ionicons name={iconName} style={buttonStyles.icon} />
                 <CText textSize='md' textColor='light'>{routeDescription}</CText>
             </View>
         </Pressable>
@@ -18,16 +18,19 @@ const MenuButton = ({ route, iconName, routeDescription}) => {
 const buttonStyles = StyleSheet.create({
     //Duplicado borrar o reemplazar
     icon: {
-        fontSize: 45,
-        color: Theme.colors.primary[100],
+        fontSize: 30,
+        color: 'white',
         paddingRight: 10,
-    
+
     },
     container: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: Theme.colors.primary[500],
+        padding: 10,
+        margin: 10,
+        borderRadius: 16,
     }
 });
 

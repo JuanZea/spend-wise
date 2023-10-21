@@ -1,21 +1,22 @@
 import { TextInput } from '@react-native-material/core';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import {CButton} from '../elements';
+import { CButton } from '../elements';
 import { Theme } from '@/styles'
+import { CText } from '../elements';
 
 export default function BudgetsPage() {
     return (
         <View style={styles.container}>
-                        <View style={styles.budgets}>
+            <View style={styles.budgets}>
 
-                <Text style={styles.title}>Presupuesto</Text>
-            
-               <CButton label="Global" />
+                <CText fontWeight='bold' textColor='light' textSize='lg'>Presupuesto</CText>
+
+                <CButton label="Global" />
                 <View style={styles.createBudget}>
                     <TextInput style={styles.input} label="Valor" />
-                 <CButton label="Crear" />
+                    <CButton label="Crear" />
                 </View>
-                </View>
+            </View>
         </View>
     );
 }
@@ -26,13 +27,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         gap: 20,
-        backgroundColor: '#ddd6fe',
-        paddingVertical: 10,
-
+        flex: 1,
     },
     budgets: {
         display: 'flex',
-        marginTop: 'auto',
         alignItems: 'center',
         gap: 10,
         width: '90%',
@@ -42,7 +40,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 25,
-        color:Theme.colors.primary[50],
+        color: Theme.colors.primary[50],
         fontWeight: 'bold',
         justifyContent: 'center',
     },
@@ -52,7 +50,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
 
     },
-    createBudget:{
+    createBudget: {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -60,5 +58,5 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: 50,
     }
-  
+
 });
