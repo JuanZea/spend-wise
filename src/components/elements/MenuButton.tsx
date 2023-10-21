@@ -6,9 +6,9 @@ import { CText } from '../elements'
 const MenuButton = ({ route, iconName, routeDescription}) => {
     return (
         <Pressable onPress={() => route({replace: true})}>
-            <View style={buttonStyles.cosa}>
-                <Ionicons name={iconName}  style={buttonStyles.container}/>
-                <CText textSize='sm'>{routeDescription}</CText>
+            <View style={buttonStyles.container}>
+                <Ionicons name={iconName}  style={buttonStyles.icon}/>
+                <CText textSize='md' textColor='light'>{routeDescription}</CText>
             </View>
         </Pressable>
     );
@@ -17,15 +17,17 @@ const MenuButton = ({ route, iconName, routeDescription}) => {
 
 const buttonStyles = StyleSheet.create({
     //Duplicado borrar o reemplazar
-    container: {
+    icon: {
         fontSize: 45,
-        color: Theme.colors.primary[500],
+        color: Theme.colors.primary[100],
+        paddingRight: 10,
     
     },
-    cosa: {
+    container: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
+        backgroundColor: Theme.colors.primary[500],
     }
 });
 

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, Button, TouchableOpacity } from 'react-native';
 import { TextInput, Switch } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
+import { Theme } from '@/styles';
+import { CText, CButton } from '../elements';
 
 export default function SettingsPage() {
     const [isEnabled, setIsEnabled] = useState(false);
@@ -9,18 +11,17 @@ export default function SettingsPage() {
     return (
         <View style={styles.container}>
             <View style={styles.backgroundTitle}>
-                <Text style={styles.title}>Hola Eliana</Text>
+                <CText textSize='lg' fontWeight='bold' textColor='light'>Hola Eliana</CText>
             </View>
 
             <View style={styles.settings}>
-                <Text style={styles.subtitle}>Ajustes</Text>
+                <CText textSize='md' textColor='light'>Ajustes</CText>
                 <TextInput style={styles.label} label="Nombre" />
-                <TouchableOpacity style={styles.button} onPress={() => {}}>
-                    <Text style={styles.buttonText}>Actualizar</Text>
-                </TouchableOpacity>
+              
+                <CButton label="Actualizar"/>
             </View>
             <View style={styles.containerSwitch}>
-                <Text style={styles.textSwitch}>Activar Notificaciones</Text>
+                <CText textColor='light' textSize='md'>Activar Notificaciones</CText>
                 <Switch
                     trackColor={{ false: '#581c87', true: '#6b21a8' }}
                     thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
@@ -35,12 +36,14 @@ export default function SettingsPage() {
 }
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#ddd6fe',
+        backgroundColor: Theme.colors.primary[500],
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         gap: 20,
         paddingVertical: 10,
+        margin:10,
+        borderRadius: 16,
     },
 
     settings: {
@@ -52,16 +55,15 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     backgroundTitle: {
-        display: 'flex',
-        flexDirection: 'row',
         justifyContent: 'center',
-        backgroundColor: '#6b21a8',
+        backgroundColor: Theme.colors.primary[400],
         width: '100%',
         alignItems: 'center',
     },
+
     title: {
         fontSize: 30,
-        color: '#FFFFFF',
+        color: Theme.fonts.light,
         fontWeight: 'bold',
         backgroundColor: '#6b21a8',
         justifyContent: 'center',

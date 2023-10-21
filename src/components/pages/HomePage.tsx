@@ -9,6 +9,8 @@ export default function HomePage() {
         <View style={styles.container}>
 
             <BalancePanel />
+
+            
             
         </View>
     );

@@ -1,6 +1,6 @@
 import { TextInput } from '@react-native-material/core';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Button from '@elements/Button';
+import {CButton} from '../elements';
 import { Theme } from '@/styles'
 
 export default function BudgetsPage() {
@@ -10,10 +10,10 @@ export default function BudgetsPage() {
 
                 <Text style={styles.title}>Presupuesto</Text>
             
-               <Button label="Global" />
+               <CButton label="Global" />
                 <View style={styles.createBudget}>
                     <TextInput style={styles.input} label="Valor" />
-                 <Button label="Crear" />
+                 <CButton label="Crear" />
                 </View>
                 </View>
         </View>

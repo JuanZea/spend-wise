@@ -12,8 +12,8 @@ const BalancePanel = () => {
             </View>
 
             <View style={styles.exchangeContainer}>
-                <ExchangePanel nameAprox="USD" value="2.0000 COP" />
-                <ExchangePanel nameAprox="EUR" value="2.0000 COP" />
+                <ExchangePanel nameAprox="USD" value="2.0000 USD" />
+                <ExchangePanel nameAprox="EUR" value="2.0000 EUR" />
             </View>
         </View>
     );
