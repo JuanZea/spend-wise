@@ -1,6 +1,7 @@
 import { TextInput } from '@react-native-material/core';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Button from '@elements/Button';
+import { Theme } from '@/styles'
 
 export default function BudgetsPage() {
     return (
@@ -35,13 +36,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 10,
         width: '90%',
-        backgroundColor: '#6b21a8',
+        backgroundColor: Theme.colors.primary[500],
         borderRadius: 15,
         paddingVertical: 20,
     },
     title: {
         fontSize: 25,
-        color: '#FFFFFF',
+        color:Theme.colors.primary[50],
         fontWeight: 'bold',
         justifyContent: 'center',
     },

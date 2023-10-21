@@ -4,9 +4,8 @@ import { Theme } from '@/styles'
 import { CText } from '../elements'
 
 const MenuButton = ({ route, iconName, routeDescription}) => {
-    console.log(route);
     return (
-        <Pressable onPress={route}>
+        <Pressable onPress={() => route({replace: true})}>
             <View style={buttonStyles.cosa}>
                 <Ionicons name={iconName}  style={buttonStyles.container}/>
                 <CText textSize='sm'>{routeDescription}</CText>

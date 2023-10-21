@@ -1,6 +1,5 @@
 import { View, Text, Button} from 'react-native';
 import { StyleSheet } from 'react-native';
-import { ExchangeView} from '../elements/homeElements'
 import { Theme } from '@/styles'
 import { BalancePanel } from '../elements';
 
@@ -16,7 +15,8 @@ export default function HomePage() {
 }
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: Theme.colors.primary[50],
+        padding: 12,
+        flex: 1,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         marginTop: 'auto',
         fontSize: 50,
         padding: 10,
-        backgroundColor: '#6b21a8',
+        backgroundColor: Theme.colors.primary[400],
         color: '#FFFFFF',
         borderRadius: 15,
         alignItems: 'center',

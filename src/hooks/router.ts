@@ -4,8 +4,15 @@ import { ROUTE_NAMES } from '@/constants';
 export const useNavigate = () => {
     const navigate = useNavigateRRN();
 
-    const toWrapper = (path: '/' | ROUTE_NAMES) => (options?) =>  {navigate('/', { replace: true }); navigate(String(path), options)} ;
+    const toWrapper = (path: '/' | ROUTE_NAMES) => (options?) => {
+        navigate('/', { replace: true });
+        navigate(String(path), options);
+    };
 
+    const to = (path: '/' | ROUTE_NAMES, options?) => {
+        navigate('/', { replace: true });
+        navigate(String(path), options);
+    };
     const toHome = toWrapper('/');
     const toSettings = toWrapper(ROUTE_NAMES.settings);
     const toBudget = toWrapper(ROUTE_NAMES.budget);
@@ -14,5 +21,5 @@ export const useNavigate = () => {
     const toTipsCalculator = toWrapper(ROUTE_NAMES.tipsCalculator);
     const toMore = toWrapper(ROUTE_NAMES.more);
 
-    return { toHome, toSettings, toBudget, toCategories, toInformation, toTipsCalculator, toMore };
+    return { to, toHome, toSettings, toBudget, toCategories, toInformation, toTipsCalculator, toMore };
 };

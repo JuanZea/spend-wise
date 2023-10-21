@@ -1,4 +1,5 @@
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Theme } from '@/styles'
 
 const Button = ({label}) => {
     return (
@@ -13,13 +14,13 @@ const styles = StyleSheet.create({
     
     button: {
         display: 'flex',
-        backgroundColor: '#581c87',
+        backgroundColor: Theme.colors.primary[400],
         borderRadius: 10,
         width: '50%',
     },
     buttonText: {
         fontSize: 20,
-        color: '#FFFFFF',
+        color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
         padding: 10,
