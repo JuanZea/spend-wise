@@ -1,7 +1,7 @@
 import { FlatList, View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Theme } from '@/styles'
-import { CText } from '../elements';
+import CText from './CText';
 
 const iconData = [
     { name: 'basket-sharp', label: 'Compras' },
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     grid: {
         justifyContent: 'space-between',
         flexDirection: 'column',
-        flexWrap: 'wrap',
         alignItems: 'center',
         gap: 20,
 

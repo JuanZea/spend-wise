@@ -15,8 +15,8 @@ export const Theme = {
         },
     },
     fonts: {
-        regular: 'Nunito-Regular',
-        bold: 'Nunito-Bold',
-        light: 'Nunito-Light',
+        regular: 'nunito-Regular',
+        bold: 'nunito-Bold',
+        light: 'nunito-Light',
     },
 };
