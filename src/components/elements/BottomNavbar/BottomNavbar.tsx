@@ -1,35 +1,22 @@
-import { View, StyleSheet, Pressable } from 'react-native';
-import { useNavigate } from '@/hooks';
+import { View, StyleSheet, Pressable, Text, FlatList } from 'react-native';
 import IconButton from './IconButton';
-import { Theme } from '@/styles';
 import { ROUTE_NAMES } from '@/constants';
+
 const BottomNavbar = () => {
     return (
-        <View style={styles.container}>
-
+        <View className="flex flex-row justify-around items-center bg-primary-500 p-2">
             <IconButton route={ROUTE_NAMES.budget} iconName="md-cash" />
             <IconButton route={ROUTE_NAMES.categories} iconName="md-grid" />
-            <IconButton route={''} iconName="md-home" />
+            <IconButton
+                main
+                classNames="bg-primary-50 border-4 border-primary-500 -top-4 p-2 -my-4 rounded-full"
+                route={''}
+                iconName="md-home"
+            />
             <IconButton route={ROUTE_NAMES.information} iconName="md-information-circle" />
             <IconButton route={ROUTE_NAMES.more} iconName="ellipsis-horizontal" />
-            
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: Theme.colors.primary[950],
-        display: 'flex',
-        flexDirection: 'row',
-        marginTop: 'auto',
-        justifyContent: 'center',
-        gap: 20,
-        paddingVertical: 10,
-    },
-    home:{
-        elevation: 8,
-    }
-});
 
 export default BottomNavbar;
