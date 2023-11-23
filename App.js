@@ -3,6 +3,7 @@ import Main from './src/Main';
 // import "./nativewind-output";
 import { Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
+import { app } from './src/helpers';
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -14,6 +15,8 @@ export default function App() {
     if (!fontsLoaded) {
         return <Text>Cargando fuentes</Text>;
     }
+
+    app.initialize();
 
     return <Main />
 }

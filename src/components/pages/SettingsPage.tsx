@@ -1,37 +1,62 @@
-import React, { useState } from 'react';
-import { View, Text, Button, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, Button, TouchableOpacity, Pressable, Alert } from 'react-native';
 import { TextInput, Switch } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
 import { Theme } from '@/styles';
 import { CText, CButton } from '../elements';
+import { app } from '@/helpers';
 
 export default function SettingsPage() {
     const [isEnabled, setIsEnabled] = useState(false);
+
     const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+    const restoreToFactoryConfig = () => {
+        Alert.alert('¿Estas seguro de restablecer los ajustes de fabrica?', 'Esta accion no se puede deshacer', [
+            {
+                text: 'Cancel',
+                style: 'cancel',
+            },
+            { text: 'OK', onPress: () => app.restoreToFactoryConfig() },
+        ]);
+    };
     return (
-        <View style={styles.container}>
-            <View style={styles.backgroundTitle}>
-                <CText textSize='lg' fontWeight='bold' textColor='light'>Hola Eliana</CText>
+        <>
+            <View style={styles.container}>
+                <View style={styles.backgroundTitle}>
+                    <CText textSize="lg" fontWeight="bold" textColor="light">
+                        Hola Eliana
+                    </CText>
+                </View>
+
+                <View style={styles.settings}>
+                    <CText textSize="md" textColor="light">
+                        Ajustes
+                    </CText>
+                    <TextInput style={styles.label} label="Nombre" />
+
+                    <CButton label="Actualizar" />
+                </View>
+                <View style={styles.containerSwitch}>
+                    <CText textColor="light" textSize="md">
+                        Activar Notificaciones
+                    </CText>
+                    <Switch
+                        trackColor={{ false: '#581c87', true: '#6b21a8' }}
+                        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                        ios_backgroundColor="#6b21a8"
+                        onValueChange={toggleSwitch}
+                        value={isEnabled}
+                        style={styles.switch}
+                    />
+                </View>
             </View>
 
-            <View style={styles.settings}>
-                <CText textSize='md' textColor='light'>Ajustes</CText>
-                <TextInput style={styles.label} label="Nombre" />
-              
-                <CButton label="Actualizar"/>
+            <View className="flex-row justify-center">
+                <Pressable className="bg-red-500 px-4 py-2 rounded" onPress={restoreToFactoryConfig}>
+                    <Text className="text-white font-bold text-lg">Restablecer ajustes de fabrica</Text>
+                </Pressable>
             </View>
-            <View style={styles.containerSwitch}>
-                <CText textColor='light' textSize='md'>Activar Notificaciones</CText>
-                <Switch
-                    trackColor={{ false: '#581c87', true: '#6b21a8' }}
-                    thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-                    ios_backgroundColor="#6b21a8"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
-                    style={styles.switch}
-                />
-            </View>
-        </View>
+        </>
     );
 }
 const styles = StyleSheet.create({
@@ -42,7 +67,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 20,
         paddingVertical: 10,
-        margin:10,
+        margin: 10,
         borderRadius: 16,
     },
 
