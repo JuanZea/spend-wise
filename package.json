@@ -13,8 +13,11 @@
     "@react-native-material/core": "^1.3.7",
     "@types/react": "~18.2.14",
     "autoprefixer": "^10.4.16",
+    "class-variance-authority": "^0.7.0",
     "expo": "~49.0.13",
+    "expo-secure-store": "~12.3.1",
     "expo-status-bar": "~1.6.0",
+    "expo-updates": "~0.18.17",
     "nativewind": "^2.0.11",
     "postcss": "^8.4.31",
     "postcss-loader": "^7.3.3",
@@ -25,9 +28,7 @@
     "react-router-native": "^6.16.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.2",
-    "typescript": "^5.1.3",
-    "expo-secure-store": "~12.3.1",
-    "expo-updates": "~0.18.17"
+    "typescript": "^5.1.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

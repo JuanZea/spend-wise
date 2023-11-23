@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, TouchableOpacity, Pressable, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Pressable, Alert } from 'react-native';
 import { TextInput, Switch } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
 import { Theme } from '@/styles';
-import { CText, CButton } from '../elements';
+import { CText, CButton, Button } from '@elements';
 import { app } from '@/helpers';
 
 export default function SettingsPage() {
@@ -52,9 +52,9 @@ export default function SettingsPage() {
             </View>
 
             <View className="flex-row justify-center">
-                <Pressable className="bg-red-500 px-4 py-2 rounded" onPress={restoreToFactoryConfig}>
-                    <Text className="text-white font-bold text-lg">Restablecer ajustes de fabrica</Text>
-                </Pressable>
+                <Button variant='danger' onPress={restoreToFactoryConfig}>
+                    Restablecer ajustes de fabrica
+                </Button>
             </View>
         </>
     );

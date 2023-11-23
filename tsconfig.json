@@ -2,6 +2,7 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
+      "@elements": ["./src/components/elements"],
       "@elements/*": ["./src/components/elements/*"],
       "@pages": ["./src/components/pages"],
     }
