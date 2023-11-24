@@ -7,3 +7,4 @@ export { default as CategoriesGrid } from './CategoriesGrid';
 export { default as SectionTitle } from './SectionTitle';
 export { default as Icon } from './Icon';
 export { default as Button } from './Button';
+export { default as AppHeader } from './AppHeader';

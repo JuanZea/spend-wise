@@ -1,15 +1,15 @@
 import { TextInput } from '@react-native-material/core';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { CButton } from '../elements';
-import { Theme } from '@/styles'
-import { CText } from '../elements';
+import { View, StyleSheet } from 'react-native';
+import { Theme } from '@/styles';
+import { CText, CButton } from '@elements';
 
-export default function BudgetsPage() {
+export default function Page() {
     return (
         <View style={styles.container}>
             <View style={styles.budgets}>
-
-                <CText fontWeight='bold' textColor='light' textSize='lg'>Presupuesto</CText>
+                <CText fontWeight="bold" textColor="light" textSize="lg">
+                    Presupuesto
+                </CText>
 
                 <CButton label="Global" />
                 <View style={styles.createBudget}>
@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         width: '80%',
         marginBottom: 10,
-
     },
     createBudget: {
         display: 'flex',
@@ -57,6 +56,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         marginTop: 50,
-    }
-
+    },
 });

@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./src/assets/img/logo.png",
     "userInterfaceStyle": "light",
+    "scheme": "demo",
     "splash": {
       "image": "./src/assets/img/logo.png",
       "resizeMode": "contain",
@@ -25,6 +26,9 @@
     },
     "web": {
       "favicon": "./src/assets/img/logo.png"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }

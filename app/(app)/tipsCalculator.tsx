@@ -1,7 +1,7 @@
 import { TextInput } from '@react-native-material/core';
 import { View, Text, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-import { CText, CButton } from '../elements';
+import { CText, CButton } from '@elements';
 import { Theme } from '@/styles';
 
 export default function TipsPage() {

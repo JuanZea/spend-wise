@@ -8,8 +8,8 @@ export const DATA = [];
 export const init = async (factoryMode: boolean) => {
     console.log('[Categories]:', factoryMode ? 'init in factory mode' : 'init');
     
+    DATA.length = 0;
     if (factoryMode) {
-        DATA.length = 0;
         DATA.push(...DEFUALT);
         await SecureStore.setItemAsync(KEY, JSON.stringify(DATA));
     } else {

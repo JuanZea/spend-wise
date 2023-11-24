@@ -1,27 +1,32 @@
-import { StyleSheet, Pressable, View } from 'react-native';
+import { StyleSheet, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigate } from '@/hooks';
-import { useLocation } from 'react-router-native';
 import { Theme } from '@/styles';
 import { styled } from 'nativewind';
 import { twMerge } from 'tailwind-merge';
+import { router, usePathname } from 'expo-router';
+import { Routes } from '@/constants';
 
 const StyledPressable = styled(Pressable);
 
-const IconButton = ({ route, iconName, main = false, classNames = '' }) => {
-    const { to } = useNavigate();
-    const { pathname } = useLocation();
+const IconButton = ({ route, main = false, classNames = '' }) => {
+    const pathname = usePathname();
+    const routePath = Routes[route].path;
+    const isActive = pathname === routePath;
 
-    const isActive = pathname === `/${route}`;
+    const to = (routePath: string) => {
+        if (routePath === pathname) return;
+        while (router.canGoBack()) router.back();
+        router.replace(routePath);
+    };
 
     return (
         <StyledPressable
             className={twMerge('rounded-md', classNames)}
-            onPress={() => to(route)}
+            onPress={() => to(routePath)}
             style={[isActive && buttonStyles.selected]}
         >
             <Ionicons
-                name={main && isActive ? 'add' : iconName}
+                name={main && isActive ? 'add' : Routes[route].icon}
                 style={[buttonStyles.icon, main && (isActive ? buttonStyles.activeMain : buttonStyles.main)]}
             />
         </StyledPressable>

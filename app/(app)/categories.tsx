@@ -2,6 +2,7 @@ import { FlatList, View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Theme } from '@/styles';
 import { SectionTitle, Icon, CategoriesGrid, Button } from '@elements';
+import { router } from 'expo-router';
 
 const iconData = [
     { name: 'basket-sharp', label: 'Compras' },
@@ -16,8 +17,8 @@ const iconData = [
 ];
 
 const addCategory = () => {
-    console.log('Agregar categoría');
-}
+    router.push('/modals/addCategory');
+};
 
 const Item = ({ item }) => (
     <View className="bg-primary-500 p-2 w-[92] mr-[21] rounded-lg flex-col items-center">
@@ -26,14 +27,12 @@ const Item = ({ item }) => (
     </View>
 );
 
-export default function CategoriesPage() {
+export default function Page() {
     return (
-        <View className='h-full pb-[40]'>
-            <SectionTitle icon="md-grid">Categorías</SectionTitle>
-
+        <View className="h-full pb-[40]">
             <FlatList
                 data={iconData}
-                numColumns={3} // Número de columnas en la cuadrícula
+                numColumns={3}
                 renderItem={Item}
                 keyExtractor={(item) => item.name}
                 contentContainerStyle={{
@@ -42,8 +41,8 @@ export default function CategoriesPage() {
                 }}
             />
 
-            <View className='flex-row justify-center mt-auto'>
-                <Button onPress={addCategory}>Agregar categoría</Button>
+            <View className="flex-row justify-center mt-auto">
+                <Button route="/modals/addCategory">Agregar categoría</Button>
             </View>
         </View>
     );

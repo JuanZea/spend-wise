@@ -1,12 +1,17 @@
 import { Categories } from '@/storage';
+import { loadAsync } from 'expo-font';
 import * as SecureStore from 'expo-secure-store';
 import * as Updates from 'expo-updates';
 
+let ready = false;
+
 export const initialize = async () => {
+    if (ready) return;
+    ready = true;
     console.log('initialize');
-    const isInFactoryConfig = await getIsInFactoryConfig();
-    await Categories.init(isInFactoryConfig);
-    console.log('DBCategories', Categories.DATA);
+
+    await mountFonts();
+    await mountData();
 };
 
 export const restoreToFactoryConfig = async () => {
@@ -15,6 +20,17 @@ export const restoreToFactoryConfig = async () => {
 
     Updates.reloadAsync();
 };
+
+const mountFonts = async () => {
+    await loadAsync('Nunito-Light', require('@/assets/fonts/Nunito-Light.ttf'));
+    await loadAsync('Nunito-Regular', require('@/assets/fonts/Nunito-Regular.ttf'));
+    await loadAsync('Nunito-Bold', require('@/assets/fonts/Nunito-Bold.ttf'));
+};
+
+const mountData = async () => {
+    const isInFactoryConfig = await getIsInFactoryConfig();
+    await Categories.init(isInFactoryConfig);
+}
 
 const getIsInFactoryConfig = async () => {
     const key = 'isInFactoryConfig';

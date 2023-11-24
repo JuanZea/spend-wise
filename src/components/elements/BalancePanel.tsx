@@ -7,7 +7,7 @@ const BalancePanel = () => {
     return (
         <View style={styles.root}>
             <View style={styles.main}>
-                <CText fontWeight='bold' textColor='light' textSize='sm'>Total Balance</CText>
+                <CText fontWeight='bold' textColor='light' textSize='sm'>Saldo Total</CText>
                 <CText fontWeight='bold' textColor='light' textSize='lg'>7,736.000 COP</CText>
             </View>
 

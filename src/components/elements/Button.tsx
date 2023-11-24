@@ -1,6 +1,8 @@
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
+import { forwardRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
+import { Link } from 'expo-router';
 
 type TButtonStyles = VariantProps<typeof buttonStyles>;
 const buttonStyles = cva(['px-4 py-2 rounded'], {
@@ -17,16 +19,28 @@ const buttonStyles = cva(['px-4 py-2 rounded'], {
 
 type TButtonProps = {
     children: string;
-    onPress: () => void;
+    route?: string;
+    onPress?: () => void;
     variant?: TButtonStyles['variant'];
 };
 
-const Button = ({ children, onPress, variant }: TButtonProps) => {
-    return (
-        <Pressable className={twMerge(buttonStyles({ variant }))} onPress={onPress}>
-            <Text className="text-white font-bold text-lg">{children}</Text>
-        </Pressable>
-    );
+const Wrapper = ({ children, route }) => {
+    if (route) {
+        return (
+            <Link href={route} asChild>
+                {children}
+            </Link>
+        );
+    }
+    return <>{children}</>;
 };
 
-export default Button;
+export default function Button({ children, onPress, route, variant }: TButtonProps) {
+    return (
+        <Wrapper route={route}>
+            <Pressable className={twMerge(buttonStyles({ variant }))} onPress={onPress}>
+                <Text className="text-white font-bold text-lg">{children}</Text>
+            </Pressable>
+        </Wrapper>
+    );
+}
