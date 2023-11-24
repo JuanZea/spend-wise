@@ -1,7 +1,17 @@
 import * as SecureStore from 'expo-secure-store';
 
 export const KEY = 'Categories';
-export const DEFUALT = ['compras', 'transporte', 'gasolina', 'mercado', 'comida', 'salud', 'libros', 'datos'];
+
+export const DEFUALT = [
+    { name: 'Compras', icon: 'basket-sharp' },
+    { name: 'Transporte', icon: 'bus-sharp' },
+    { name: 'Gasolina', icon: 'car-sharp' },
+    { name: 'Mercado', icon: 'cart-sharp' },
+    { name: 'Comida', icon: 'fast-food-sharp' },
+    { name: 'Salud', icon: 'fitness' },
+    { name: 'Libros', icon: 'library-sharp' },
+    { name: 'Datos', icon: 'phone-portrait-sharp' },
+];
 
 export const DATA = [];
 
@@ -18,3 +28,8 @@ export const init = async (factoryMode: boolean) => {
         else await SecureStore.setItemAsync(KEY, '[]');
     }
 };
+
+export const addCategory = async (category: { name: string, icon: string }) => {
+    DATA.push(category);
+    await SecureStore.setItemAsync(KEY, JSON.stringify(DATA));
+}

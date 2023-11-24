@@ -7,3 +7,4 @@ export { default as Icon } from './Icon';
 export { default as Button } from './Button';
 export { default as AppHeader } from './AppHeader';
 export { default as Screen } from './Screen';
+export { default as Select } from './Select';

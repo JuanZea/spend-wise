@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 
 const StyledIcon = styled(Ionicons);
 
-const Icon = ({ name, size, classNames }) => {
+const Icon = ({ name, size, classNames = '' }) => {
     return <StyledIcon name={name} size={size} className={twMerge(classNames)} />;
 };
 
