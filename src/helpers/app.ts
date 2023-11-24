@@ -1,7 +1,7 @@
 import { Categories } from '@/storage';
+import { reload } from './router';
 import { loadAsync } from 'expo-font';
 import * as SecureStore from 'expo-secure-store';
-import * as Updates from 'expo-updates';
 
 let ready = false;
 
@@ -18,7 +18,7 @@ export const restoreToFactoryConfig = async () => {
     console.log('restoreToFactoryConfig');
     await SecureStore.deleteItemAsync('isInFactoryConfig');
 
-    Updates.reloadAsync();
+    reload();
 };
 
 const mountFonts = async () => {

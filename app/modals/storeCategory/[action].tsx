@@ -51,7 +51,7 @@ const actionData = {
 };
 
 export default function Page() {
-    const [old, setOld] = useState({ name: '', icon: '' });
+    const [old, setOld] = useState<number>();
     const [name, setName] = useState('');
     const [icon, setIcon] = useState('');
 
@@ -59,26 +59,31 @@ export default function Page() {
     const params = useLocalSearchParams();
     const action = params.action as string;
 
+    if (!action) {
+        router.reload();
+        return;
+    }
+
     useEffect(() => {
         navigation.setOptions({ title: actionData[action].title });
     }, [navigation]);
 
     useEffect(() => {
         if (action === 'edit') {
-            const { name, icon } = Categories.DATA.find((category) => category.name === params.category);
+            const { id, name, icon } = Categories.data()[params.category as string];
+            setOld(id);
             setName(name);
             setIcon(icon);
-            setOld({ name, icon });
         }
     }, [params]);
 
     const addIcon = async () => {
-        await Categories.addCategory({ name, icon });
+        await Categories.add({ name, icon });
         router.forceReplace('/(app)/categories');
     };
 
     const editIcon = async () => {
-        await Categories.updateCategory(old, { name, icon });
+        await Categories.update(old, { name, icon });
         router.forceReplace('/(app)/categories');
     };
 

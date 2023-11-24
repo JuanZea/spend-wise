@@ -1,53 +1,49 @@
 import * as SecureStore from 'expo-secure-store';
+import { defaultCategories as DEFAULT } from '@/constants';
+import type { Category } from './types';
 
-type TCategory = { name: string, icon: string };
+const KEY = 'Categories';
+const DEFAULT_LENGTH = Object.keys(DEFAULT).length;
 
-export const KEY = 'Categories';
+let DATA = {
+    data: {},
+    lastId: DEFAULT_LENGTH,
+};
 
-export const DEFUALT = [
-    { name: 'Compras', icon: 'basket-sharp' },
-    { name: 'Transporte', icon: 'bus-sharp' },
-    { name: 'Gasolina', icon: 'car-sharp' },
-    { name: 'Mercado', icon: 'cart-sharp' },
-    { name: 'Comida', icon: 'fast-food-sharp' },
-    { name: 'Salud', icon: 'fitness' },
-    { name: 'Libros', icon: 'library-sharp' },
-    { name: 'Datos', icon: 'phone-portrait-sharp' },
-];
-
-export const DATA = [];
+const store = async () => {
+    await SecureStore.setItemAsync(KEY, JSON.stringify(DATA));
+};
 
 export const init = async (factoryMode: boolean) => {
     console.log('[Categories]:', factoryMode ? 'init in factory mode' : 'init');
-    
-    DATA.length = 0;
+
     if (factoryMode) {
-        DATA.push(...DEFUALT);
-        await SecureStore.setItemAsync(KEY, JSON.stringify(DATA));
+        DATA.data = DEFAULT;
+        DATA.lastId = DEFAULT_LENGTH;
+        await store();
     } else {
         let result = await SecureStore.getItemAsync(KEY);
-        if (result) DATA.push(...JSON.parse(result));
-        else await SecureStore.setItemAsync(KEY, '[]');
+        if (result) DATA = JSON.parse(result);
+        else await store();
     }
 };
 
-export const addCategory = async (category: TCategory) => {
-    DATA.push(category);
-    await SecureStore.setItemAsync(KEY, JSON.stringify(DATA));
-}
+export const arrayData = () => Object.keys(DATA.data).map((key) => DATA.data[key]);
+export const data = () => DATA.data;
+export const lastId = () => DATA.lastId;
 
-export const updateCategory = async (category: TCategory, newCategory: TCategory) => {
-    const index = DATA.findIndex((item) => item.name === category.name && item.icon === category.icon);
-    if (index > -1) {
-        DATA[index] = newCategory;
-        await SecureStore.setItemAsync(KEY, JSON.stringify(DATA));
-    }
-}
+export const add = async (category: Omit<Category, 'id'>) => {
+    const id = DATA.lastId++;
+    DATA.data[id] = { ...category, id };
+    await store();
+};
 
-export const removeCategory = async (category: TCategory) => {
-    const index = DATA.findIndex((item) => item.name === category.name && item.icon === category.icon);
-    if (index > -1) {
-        DATA.splice(index, 1);
-        await SecureStore.setItemAsync(KEY, JSON.stringify(DATA));
-    }
-}
+export const update = async (id: Category['id'], newCategory: Omit<Category, 'id'>) => {
+    DATA.data[id] = { ...newCategory, id };
+    await store();
+};
+
+export const remove = async (id: Category['id']) => {
+    delete DATA.data[id];
+    await store();
+};

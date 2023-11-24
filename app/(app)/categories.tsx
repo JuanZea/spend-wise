@@ -23,7 +23,7 @@ const Item = ({ item, pathname }) => (
                             {
                                 text: 'Confirmar',
                                 onPress: async () => {
-                                    await Categories.removeCategory(item);
+                                    await Categories.remove(item.id);
                                     routeHelper.forceReplace(pathname);
                                 },
                             },
@@ -35,7 +35,7 @@ const Item = ({ item, pathname }) => (
                     onPress: () => {
                         router.push({
                             pathname: '/modals/storeCategory/[action]',
-                            params: { action: 'edit', category: item.name },
+                            params: { action: 'edit', category: item.id },
                         });
                     },
                 },
@@ -58,7 +58,7 @@ export default function Page() {
     return (
         <Screen classNames="pb-[40]">
             <FlatList
-                data={Categories.DATA}
+                data={Categories.arrayData()}
                 numColumns={3}
                 renderItem={({ item }) => Item({ item, pathname })}
                 keyExtractor={(item) => item.name}
