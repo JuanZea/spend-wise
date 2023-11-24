@@ -1,11 +1,9 @@
-import { View, Text } from 'react-native';
-import { BalancePanel } from '@elements';
-import Constants from 'expo-constants';
+import { Screen, BalancePanel } from '@elements';
 
 export default function Page() {
     return (
-        <View className="p-5" style={{ paddingTop: Constants.statusBarHeight + 20 }}>
+        <Screen naked>
             <BalancePanel />
-        </View>
+        </Screen>
     );
 }

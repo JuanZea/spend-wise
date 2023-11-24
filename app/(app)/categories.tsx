@@ -1,8 +1,5 @@
-import { FlatList, View, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { Theme } from '@/styles';
-import { SectionTitle, Icon, CategoriesGrid, Button } from '@elements';
-import { router } from 'expo-router';
+import { FlatList, View, Text } from 'react-native';
+import { Icon, Screen, Button } from '@elements';
 
 const iconData = [
     { name: 'basket-sharp', label: 'Compras' },
@@ -10,33 +7,29 @@ const iconData = [
     { name: 'car-sharp', label: 'Gasolina' },
     { name: 'cart-sharp', label: 'Mercado' },
     { name: 'fast-food-sharp', label: 'Comida' },
+    { name: 'add-circle-sharp', label: 'Agregar aaasdf asdfasdfa ' },
     { name: 'fitness', label: 'Salud' },
     { name: 'library-sharp', label: 'Libros' },
     { name: 'phone-portrait-sharp', label: 'Datos' },
-    { name: 'add-circle-sharp', label: 'Agregar...' },
 ];
 
-const addCategory = () => {
-    router.push('/modals/addCategory');
-};
-
 const Item = ({ item }) => (
-    <View className="bg-primary-500 p-2 w-[92] mr-[21] rounded-lg flex-col items-center">
-        <Icon classNames="text-white" size={40} name={item.name} />
-        <Text className="text-white">{item.label}</Text>
+    <View className="bg-primary-500 py-2 w-[92] mr-[21] rounded-lg flex-col items-center">
+        <Icon classNames="text-white mb-2" size={40} name={item.name} />
+        <Text className="text-white bg-primary-400 text-center px-2 w-full" numberOfLines={1}>{item.label}</Text>
     </View>
 );
 
 export default function Page() {
     return (
-        <View className="h-full pb-[40]">
+        <Screen classNames="pb-[40]">
             <FlatList
                 data={iconData}
                 numColumns={3}
                 renderItem={Item}
                 keyExtractor={(item) => item.name}
                 contentContainerStyle={{
-                    padding: 21,
+                    padding: 1,
                     gap: 21,
                 }}
             />
@@ -44,6 +37,6 @@ export default function Page() {
             <View className="flex-row justify-center mt-auto">
                 <Button route="/modals/addCategory">Agregar categoría</Button>
             </View>
-        </View>
+        </Screen>
     );
 }

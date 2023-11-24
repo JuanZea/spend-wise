@@ -1,9 +1,10 @@
-import { View, Text } from 'react-native';
+import { Screen } from '@elements';
+import { Text } from 'react-native';
 
 export default function Page() {
     return (
-        <View className="p-5">
+        <Screen>
             <Text>Information Screen</Text>
-        </View>
+        </Screen>
     );
 }
