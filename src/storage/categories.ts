@@ -1,5 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
 
+type TCategory = { name: string, icon: string };
+
 export const KEY = 'Categories';
 
 export const DEFUALT = [
@@ -29,7 +31,23 @@ export const init = async (factoryMode: boolean) => {
     }
 };
 
-export const addCategory = async (category: { name: string, icon: string }) => {
+export const addCategory = async (category: TCategory) => {
     DATA.push(category);
     await SecureStore.setItemAsync(KEY, JSON.stringify(DATA));
+}
+
+export const updateCategory = async (category: TCategory, newCategory: TCategory) => {
+    const index = DATA.findIndex((item) => item.name === category.name && item.icon === category.icon);
+    if (index > -1) {
+        DATA[index] = newCategory;
+        await SecureStore.setItemAsync(KEY, JSON.stringify(DATA));
+    }
+}
+
+export const removeCategory = async (category: TCategory) => {
+    const index = DATA.findIndex((item) => item.name === category.name && item.icon === category.icon);
+    if (index > -1) {
+        DATA.splice(index, 1);
+        await SecureStore.setItemAsync(KEY, JSON.stringify(DATA));
+    }
 }

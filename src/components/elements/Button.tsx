@@ -22,7 +22,7 @@ const buttonStyles = cva(['px-4 py-2 rounded'], {
 
 type TButtonProps = {
     children: string;
-    route?: string;
+    route?: string | { pathname: string; params: Record<string, string> };
     onPress?: () => void;
     variant?: TButtonStyles['variant'];
     classNames?: string;

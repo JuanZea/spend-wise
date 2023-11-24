@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, Pressable, Alert } from 'react-native';
+import { useState } from 'react';
+import { View, Alert } from 'react-native';
 import { TextInput, Switch } from '@react-native-material/core';
 import { StyleSheet } from 'react-native';
 import { Theme } from '@/styles';

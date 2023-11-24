@@ -40,9 +40,8 @@ export default function Layout() {
                 }}
             >
                 <Stack.Screen
-                    name="modals/addCategory"
+                    name="modals/storeCategory/[action]"
                     options={{
-                        title: 'Agregar Categoría',
                         headerShown: true,
                         animation: 'slide_from_right',
                         presentation: 'transparentModal',

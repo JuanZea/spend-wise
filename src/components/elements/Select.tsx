@@ -8,6 +8,7 @@ type TSelectProps = {
     onSelect?: (item: string, index: number) => void;
     placeholder?: string;
     width?: string | number;
+    defaultValue?: number;
 };
 
 export default function Select({
@@ -15,11 +16,12 @@ export default function Select({
     onSelect = () => {},
     width = '100%',
     placeholder = 'Selecciona una opción',
+    defaultValue,
 }: TSelectProps) {
     return (
         <SelectDropdown
             data={data}
-            // defaultValueByIndex={1}
+            defaultValueByIndex={defaultValue}
             // defaultValue={'England'}
             onSelect={onSelect}
             defaultButtonText={placeholder}

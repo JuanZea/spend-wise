@@ -3,8 +3,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { Theme } from '@/styles';
 import { styled } from 'nativewind';
 import { twMerge } from 'tailwind-merge';
-import { router, usePathname } from 'expo-router';
+import { usePathname } from 'expo-router';
 import { Routes } from '@/constants';
+import { router } from '@/helpers';
 
 const StyledPressable = styled(Pressable);
 
@@ -15,8 +16,7 @@ const IconButton = ({ route, main = false, classNames = '' }) => {
 
     const to = (routePath: string) => {
         if (routePath === pathname) return;
-        while (router.canGoBack()) router.back();
-        router.replace(routePath);
+        router.forceReplace(routePath)
     };
 
     return (
