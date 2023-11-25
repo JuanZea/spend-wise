@@ -3,6 +3,12 @@ import { View, Text } from 'react-native';
 import { Transactions } from '@/storage';
 import { formatAmount } from '@/helpers/amount';
 import { List } from 'react-native-paper';
+import { styled } from 'nativewind';
+import { ScrollView } from 'react-native-gesture-handler';
+
+const ListSection = styled(List.Section);
+const ListHeader = styled(List.Subheader);
+const ListItem = styled(List.Item);
 
 export default function Page() {
     return (
@@ -27,25 +33,31 @@ export default function Page() {
                 </View>
             </View>
 
-            {/* <View className="mt-4">
-                <List.Section>
-                    <List.Subheader>Últimos movimientos</List.Subheader>
-                    {Transactions.arrayData().map((transaction) => (
-                        <List.Item
-                            key={transaction.id}
-                            title={transaction.description}
-                            description={formatAmount(transaction.amount)}
-                            left={(props) => (
-                                <List.Icon
-                                    {...props}
-                                    icon={transaction.type === 'income' ? 'arrow-up' : 'arrow-down'}
-                                    color={transaction.type === 'income' ? 'green' : 'red'}
-                                />
-                            )}
-                        />
-                    ))}
-                </List.Section>
-            </View> */}
+            <ListSection className="max-h-80 bg-primary-500 rounded-xl p-4 mt-5" style={{ gap: 4 }}>
+                <ListHeader className="font-bold text-lg p-0 text-primary-50">Resumen</ListHeader>
+                {Transactions.arrayData().length === 0 && (
+                    <Text className="font-bold p-0 text-primary-50">No tienes movimientos</Text>
+                )}
+                <ScrollView>
+                    {Transactions.arrayData()
+                        .map((transaction) => (
+                            <ListItem
+                                className="bg-primary-50 p-0 flex-row w-full shrink rounded-xl justify-center items-center mb-2"
+                                key={transaction.id}
+                                title={formatAmount(transaction.amount)}
+                                description={transaction.name}
+                                left={(props) => (
+                                    <List.Icon
+                                        {...props}
+                                        icon={transaction.type === 'income' ? 'arrow-up' : 'arrow-down'}
+                                        color={transaction.type === 'income' ? 'green' : 'red'}
+                                    />
+                                )}
+                            />
+                        ))
+                        .reverse()}
+                </ScrollView>
+            </ListSection>
         </Screen>
     );
 }

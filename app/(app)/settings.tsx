@@ -22,20 +22,6 @@ export default function SettingsPage() {
     return (
         <>
             <View style={styles.container}>
-                <View style={styles.backgroundTitle}>
-                    <CText textSize="lg" fontWeight="bold" textColor="light">
-                        Hola Eliana
-                    </CText>
-                </View>
-
-                <View style={styles.settings}>
-                    <CText textSize="md" textColor="light">
-                        Ajustes
-                    </CText>
-                    <TextInput style={styles.label} label="Nombre" />
-
-                    <CButton label="Actualizar" />
-                </View>
                 <View style={styles.containerSwitch}>
                     <CText textColor="light" textSize="md">
                         Activar Notificaciones

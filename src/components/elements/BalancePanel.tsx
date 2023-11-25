@@ -35,11 +35,11 @@ export default function BalancePanel({ balance }) {
             <View className="mt-3 w-full flex-row justify-between" style={{ gap: 12 }}>
                 <ExchangePanel
                     nameAprox="USD"
-                    value={USDConvertion ? '≈ ' + formatAmount(USDConvertion) : 'Calculando...'}
+                    value={(USDConvertion || USDConvertion === 0) ? '≈ ' + formatAmount(USDConvertion) : 'Calculando...'}
                 />
                 <ExchangePanel
                     nameAprox="EUR"
-                    value={EURConvertion ? '≈ ' + formatAmount(EURConvertion, '€') : 'Calculando...'}
+                    value={(EURConvertion || EURConvertion === 0) ? '≈ ' + formatAmount(EURConvertion, '€') : 'Calculando...'}
                 />
             </View>
         </View>
