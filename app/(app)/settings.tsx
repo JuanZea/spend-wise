@@ -13,7 +13,7 @@ export default function SettingsPage() {
     const restoreToFactoryConfig = () => {
         Alert.alert('¿Estas seguro de restablecer los ajustes de fabrica?', 'Esta accion no se puede deshacer', [
             {
-                text: 'Cancel',
+                text: 'Cancelar',
                 style: 'cancel',
             },
             { text: 'OK', onPress: () => app.restoreToFactoryConfig() },

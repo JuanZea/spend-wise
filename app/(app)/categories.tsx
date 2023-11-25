@@ -9,7 +9,7 @@ const Item = ({ item, pathname }) => (
         onPress={() => {
             Alert.alert(item.name, 'Personaliza o elimina tu categoría', [
                 {
-                    text: 'Cancel',
+                    text: 'Cancelar',
                     style: 'cancel',
                 },
                 {

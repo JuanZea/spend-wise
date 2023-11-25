@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "spend-wise",
+    "name": "Spendwise+",
     "slug": "spend-wise",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,13 +22,22 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/img/logo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.juanzea.spendwise"
     },
     "web": {
       "favicon": "./src/assets/img/logo.png"
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "af924e9c-0de6-45bf-990a-c8245939c9b3"
+      }
+    }
   }
 }

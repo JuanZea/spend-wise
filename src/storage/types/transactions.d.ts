@@ -8,5 +8,5 @@ export type Transaction = {
     date: Date;
     category: number;
     paymentMethod: keyof typeof PaymentMethods;
-    description: string;
+    description?: string;
 };
