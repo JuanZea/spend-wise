@@ -3,7 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Theme } from '@/styles';
 import { styled } from 'nativewind';
 import { twMerge } from 'tailwind-merge';
-import { usePathname } from 'expo-router';
+import { usePathname, router as expoRouter } from 'expo-router';
 import { Routes } from '@/constants';
 import { router } from '@/helpers';
 
@@ -15,8 +15,15 @@ const IconButton = ({ route, main = false, classNames = '' }) => {
     const isActive = pathname === routePath;
 
     const to = (routePath: string) => {
-        if (routePath === pathname) return;
-        router.forceReplace(routePath)
+        if (routePath === pathname) {
+            if (routePath === '/')
+                expoRouter.push({
+                    pathname: '/modals/storeTransaction/[action]',
+                    params: { action: 'add' },
+                });
+            return;
+        }
+        router.forceReplace(routePath);
     };
 
     return (

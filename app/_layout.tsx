@@ -47,6 +47,14 @@ export default function Layout() {
                         presentation: 'transparentModal',
                     }}
                 />
+                <Stack.Screen
+                    name="modals/storeTransaction/[action]"
+                    options={{
+                        headerShown: true,
+                        animation: 'slide_from_right',
+                        presentation: 'transparentModal',
+                    }}
+                />
             </Stack>
         </PaperProvider>
     );

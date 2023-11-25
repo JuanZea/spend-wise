@@ -1,13 +1,11 @@
 import * as SecureStore from 'expo-secure-store';
-import { defaultCategories as DEFAULT } from '@/constants';
-import type { Category } from './types';
+import type { Category, Transaction } from './types';
 
-const KEY = 'Categories';
-const DEFAULT_LENGTH = Object.keys(DEFAULT).length;
+const KEY = 'Transactions';
 
 let DATA = {
     data: {},
-    lastId: DEFAULT_LENGTH,
+    lastId: 0,
 };
 
 const store = async () => {
@@ -15,13 +13,10 @@ const store = async () => {
 };
 
 export const init = async (factoryMode: boolean) => {
-    console.log('[Categories]:', factoryMode ? 'init in factory mode' : 'init');
+    console.log('[Transactions]:', factoryMode ? 'init in factory mode' : 'init');
 
-    if (factoryMode) {
-        DATA.data = DEFAULT;
-        DATA.lastId = DEFAULT_LENGTH;
-        await store();
-    } else {
+    if (factoryMode) await store();
+    else {
         let result = await SecureStore.getItemAsync(KEY);
         if (result) DATA = JSON.parse(result);
         else await store();
@@ -32,18 +27,32 @@ export const arrayData = () => Object.keys(DATA.data).map((key) => DATA.data[key
 export const data = () => DATA.data;
 export const lastId = () => DATA.lastId;
 
-export const add = async (category: Omit<Category, 'id'>) => {
+const total = (type: Transaction['type'] | 'balance') => {
+    let total = 0;
+    const compare = type === 'balance' ? 'income' : type;
+    for (const transaction of arrayData()) {
+        if (transaction.type === compare) total += transaction.amount;
+        else if (type === 'balance') total -= transaction.amount;
+    }
+    return total;
+};
+
+export const balance = () => total('balance');
+export const income = () => total('income');
+export const egress = () => total('egress');
+
+export const add = async (transaction: Omit<Transaction, 'id'>) => {
     const id = DATA.lastId++;
-    DATA.data[id] = { ...category, id };
+    DATA.data[id] = { ...transaction, id };
     await store();
 };
 
-export const update = async (id: Category['id'], newCategory: Omit<Category, 'id'>) => {
-    DATA.data[id] = { ...newCategory, id };
+export const update = async (id: Transaction['id'], newTransaction: Omit<Transaction, 'id'>) => {
+    DATA.data[id] = { ...newTransaction, id };
     await store();
 };
 
-export const remove = async (id: Category['id']) => {
+export const remove = async (id: Transaction['id']) => {
     delete DATA.data[id];
     await store();
 };

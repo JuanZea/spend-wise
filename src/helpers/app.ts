@@ -1,4 +1,4 @@
-import { Categories } from '@/storage';
+import { Categories, Transactions } from '@/storage';
 import { reload } from './router';
 import { loadAsync } from 'expo-font';
 import * as SecureStore from 'expo-secure-store';
@@ -30,6 +30,7 @@ const mountFonts = async () => {
 const mountData = async () => {
     const isInFactoryConfig = await getIsInFactoryConfig();
     await Categories.init(isInFactoryConfig);
+    await Transactions.init(isInFactoryConfig);
 }
 
 const getIsInFactoryConfig = async () => {

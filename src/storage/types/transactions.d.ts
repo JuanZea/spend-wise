@@ -1,9 +1,11 @@
 import { PaymentMethods } from '@/constants';
 
-type TransactionType = 'income' | 'expense';
+type TransactionType = 'income' | 'egress';
 
 export type Transaction = {
-    value: number;
+    id: number;
+    name: string;
+    amount: number;
     type: TransactionType;
     date: Date;
     category: number;
