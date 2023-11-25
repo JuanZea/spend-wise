@@ -2,11 +2,12 @@ import { Screen, BalancePanel, Icon } from '@elements';
 import { View, Text } from 'react-native';
 import { Transactions } from '@/storage';
 import { formatAmount } from '@/helpers/amount';
+import { List } from 'react-native-paper';
 
 export default function Page() {
     return (
         <Screen naked>
-            <BalancePanel />
+            <BalancePanel balance={Transactions.balance()} />
 
             <View className="flex-row mt-4" style={{ gap: 12 }}>
                 <View className="bg-primary-500 p-3 w-full shrink rounded-xl justify-center items-center">
@@ -25,6 +26,26 @@ export default function Page() {
                     <Text className="text-white text-lg font-bold">{formatAmount(Transactions.egress())}</Text>
                 </View>
             </View>
+
+            {/* <View className="mt-4">
+                <List.Section>
+                    <List.Subheader>Últimos movimientos</List.Subheader>
+                    {Transactions.arrayData().map((transaction) => (
+                        <List.Item
+                            key={transaction.id}
+                            title={transaction.description}
+                            description={formatAmount(transaction.amount)}
+                            left={(props) => (
+                                <List.Icon
+                                    {...props}
+                                    icon={transaction.type === 'income' ? 'arrow-up' : 'arrow-down'}
+                                    color={transaction.type === 'income' ? 'green' : 'red'}
+                                />
+                            )}
+                        />
+                    ))}
+                </List.Section>
+            </View> */}
         </Screen>
     );
 }

@@ -1,7 +1,8 @@
 import { View, Text } from 'react-native';
 import CText from './CText';
-import { Transactions } from '@/storage';
 import { formatAmount } from '@/helpers/amount';
+import { useEffect, useState } from 'react';
+import { getExchangeCOP } from '@/service';
 
 const ExchangePanel = ({ nameAprox, value }) => {
     return (
@@ -12,7 +13,15 @@ const ExchangePanel = ({ nameAprox, value }) => {
     );
 };
 
-export default function BalancePanel() {
+export default function BalancePanel({ balance }) {
+    const [USDConvertion, setUSDRate] = useState<number>();
+    const [EURConvertion, setEURRate] = useState<number>();
+
+    useEffect(() => {
+        getExchangeCOP('USD', balance).then((rate) => setUSDRate(rate));
+        getExchangeCOP('EUR', balance).then((rate) => setEURRate(rate));
+    }, []);
+
     return (
         <View className="bg-primary-500 rounded-2xl p-3">
             <View className="items-center">
@@ -20,12 +29,18 @@ export default function BalancePanel() {
                     Saldo Total
                 </CText>
                 <CText fontWeight="bold" textColor="light" textSize="lg">
-                    {formatAmount(Transactions.balance())} COP
+                    {formatAmount(balance)} COP
                 </CText>
             </View>
             <View className="mt-3 w-full flex-row justify-between" style={{ gap: 12 }}>
-                <ExchangePanel nameAprox="USD" value="2.0000 USD" />
-                <ExchangePanel nameAprox="EUR" value="2.0000 EUR" />
+                <ExchangePanel
+                    nameAprox="USD"
+                    value={USDConvertion ? '≈ ' + formatAmount(USDConvertion) : 'Calculando...'}
+                />
+                <ExchangePanel
+                    nameAprox="EUR"
+                    value={EURConvertion ? '≈ ' + formatAmount(EURConvertion, '€') : 'Calculando...'}
+                />
             </View>
         </View>
     );
